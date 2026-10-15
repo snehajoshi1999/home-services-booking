@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "6f1c2a4e-8b3d-4c5e-9a7f-1d2e3f4a5b6c",
+    "name": "Home Services Booking API",
+    "description": "Requests for the Home Services Booking API. Change the baseUrl variable if the app is not running on localhost:8080.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Get all services",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/services"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Search services (clean)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/services?search=clean"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Get service by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/services/1"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Get service by id - not found (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/services/999"
+      },
+      "response": []
+    },
+    {
+      "name": "5. Create booking",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"serviceId\": 1,\n  \"name\": \"Ravi Kumar\",\n  \"phone\": \"9876543210\",\n  \"address\": \"12 MG Road, Pune\",\n  \"date\": \"2026-12-20\",\n  \"timeSlot\": \"10:00 AM - 12:00 PM\"\n}"
+        },
+        "url": "{{baseUrl}}/api/bookings"
+      },
+      "response": []
+    },
+    {
+      "name": "6. Create booking - invalid input (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"serviceId\": 1,\n  \"name\": \"\",\n  \"phone\": \"12345\",\n  \"address\": \"\",\n  \"date\": \"2020-01-01\",\n  \"timeSlot\": \"10:00 AM - 12:00 PM\"\n}"
+        },
+        "url": "{{baseUrl}}/api/bookings"
+      },
+      "response": []
+    },
+    {
+      "name": "7. Create booking - service does not exist (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"serviceId\": 999,\n  \"name\": \"Ravi Kumar\",\n  \"phone\": \"9876543210\",\n  \"address\": \"12 MG Road, Pune\",\n  \"date\": \"2026-12-20\",\n  \"timeSlot\": \"10:00 AM - 12:00 PM\"\n}"
+        },
+        "url": "{{baseUrl}}/api/bookings"
+      },
+      "response": []
+    },
+    {
+      "name": "8. Get my bookings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/bookings"
+      },
+      "response": []
+    },
+    {
+      "name": "9. Cancel booking",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": "{{baseUrl}}/api/bookings/1/cancel"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080", "type": "string" }
+  ]
+}
